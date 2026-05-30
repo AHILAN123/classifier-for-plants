@@ -21,11 +21,11 @@ IMAGE_CHANNELS = 3
 
 # Training Settings : - 
 BATCH_SIZE = 16
-NUM_EPOCHS = 20
+NUM_EPOCHS = 5
 LEARNING_RATE = 1e-4
 
 #K-FOLD Settings : - 
-NUM_FOLDS = 5
+NUM_FOLDS = 4
 
 SHUFFLE_DATASET = True
 
