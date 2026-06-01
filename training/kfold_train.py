@@ -40,7 +40,7 @@ kfold = StratifiedKFold(
 for fold, (train_idx, val_idx) in enumerate(
     kfold.split(
         df,
-        df["binary_label"]
+        df["label"]
     )
 ):
     print("\n" + "=" * 50)

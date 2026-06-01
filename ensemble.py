@@ -31,12 +31,9 @@ test_loader = DataLoader(
 print(f"Test Samples: {len(test_df)}")
 
 
-# =====================================
-# LOAD ALL FOLD MODELS
-# =====================================
-
+#load fold models created in checkpoint/
 models = []
-for fold in range(1, 5):
+for fold in range(1, 3):
 
     checkpoint_path = os.path.join(
         CHECKPOINT_DIR,
@@ -72,6 +69,7 @@ with torch.no_grad():
     for images,metadata,labels in test_loader:
         images = images.to(DEVICE)
         metadata = metadata.to(DEVICE)
+        labels = labels.to(DEVICE)
         ensemble_outputs = None
 
         for model in models:
@@ -95,29 +93,32 @@ with torch.no_grad():
         )
 
         all_labels.extend(
-            labels.numpy()
+            labels.cpu().numpy()
         )
 
 
 
 accuracy = accuracy_score(
     all_labels,
-    all_predictions
+    all_predictions,
 )
 
 precision = precision_score(
     all_labels,
-    all_predictions
+    all_predictions,
+    average = "weighted"
 )
 
 recall = recall_score(
     all_labels,
-    all_predictions
+    all_predictions,
+    average = "weighted"
 )
 
 f1 = f1_score(
     all_labels,
-    all_predictions
+    all_predictions,
+    average = "weighted"
 )
 
 cm = confusion_matrix(
@@ -139,9 +140,12 @@ print(
     classification_report(
         all_labels,
         all_predictions,
+        labels = [0,1,2,3],
         target_names=[
-            "Healthy",
-            "Bacterial Spot"
+            "Apple scab",
+            "rot",
+            "Cedar apple rust",
+            "healthy",
         ]
     )
 )

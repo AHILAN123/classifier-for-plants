@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 from models.image_encoder import ImageEncoder
 from models.metadata_encoder import MetadataEncoder
+from configs.config import NUM_CLASSES
 
 class MultimodalModel(nn.Module):
     def __init__(self):
@@ -25,7 +26,7 @@ class MultimodalModel(nn.Module):
             nn.Linear(fusion_dim, 256),
             nn.ReLU(),
             nn.Dropout(0.3),
-            nn.Linear(256, 2)
+            nn.Linear(256, NUM_CLASSES)
         )
 
 

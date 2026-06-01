@@ -62,7 +62,7 @@ class PlantDiseaseDataset(Dataset):
 
         #load labels 
         label = torch.tensor(
-            row["binary_label"],
+            row["label"],
             dtype=torch.long
         )
 

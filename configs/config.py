@@ -11,28 +11,24 @@ TEST_CSV = os.path.join(DATA_DIR, "test.csv")
 CHECKPOINT_DIR = os.path.join(BASE_DIR, "checkpoints")
 OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
 
-# ==========================================
-# IMAGE SETTINGS
-# ==========================================
-
 IMAGE_SIZE = 224
 
 IMAGE_CHANNELS = 3
 
 # Training Settings : - 
 BATCH_SIZE = 16
-NUM_EPOCHS = 5
+NUM_EPOCHS = 3
 LEARNING_RATE = 1e-4
 
 #K-FOLD Settings : - 
-NUM_FOLDS = 4
+NUM_FOLDS = 2
 
 SHUFFLE_DATASET = True
 
 RANDOM_SEED = 42
 
 #Model settings :- 
-NUM_CLASSES = 2
+NUM_CLASSES = 4
 
 METADATA_INPUT_DIM = 7
 
@@ -60,7 +56,7 @@ os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
-print("========== CONFIG LOADED ==========")
+print("=======CONFIG LOADED======")
 
 print(f"Device: {DEVICE}")
 
@@ -72,4 +68,4 @@ print(f"Learning Rate: {LEARNING_RATE}")
 
 print(f"Number of Folds: {NUM_FOLDS}")
 
-print("===================================")
+print("="*10)
